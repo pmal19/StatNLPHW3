@@ -5,7 +5,7 @@ import java.io.BufferedWriter;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.util.*;
-import javafx.util.Pair; 
+// import javafx.util.Pair; 
 
 import nlp.util.*;
 import nlp.classify.*;
@@ -299,6 +299,25 @@ public class POSTaggerTester {
 	// TODO - Viterbi implements TrellisDecoder or similar
 
 	static class ViterbiDecoder<S> implements TrellisDecoder<S> {
+
+		private class Pair<K, V> {
+			K key;
+			V value;
+
+			public Pair(K k, V v) {
+				key = k;
+				value = v;
+			}
+
+			public K getKey() {
+				return key;
+			}
+
+			public V getValue() {
+				return value;
+			}
+		}		
+
 		public List<S> getBestPath(Trellis<S> trellis) {
 
 			S startState = trellis.getStartState();
@@ -334,7 +353,8 @@ public class POSTaggerTester {
 				}
 				Pair<S, Integer> nextStatePair = statesQueue.remove();
 				currentState = nextStatePair.getKey();
-				if (nextStatePair.getValue() > index) {
+				double ind = nextStatePair.getValue();
+				if (ind > index) {
 					index += 1;
 					viterbiPrev = viterbiCurrent;
 					viterbiCurrent = new Counter<S>();
@@ -365,14 +385,49 @@ public class POSTaggerTester {
 			// Counter<S> backTransitions = new Counter<S>();
 			// viterbi.setCount(0, startState, 0.0);
 			// double transition, vProb;
-
-
-			// S currentState = trellis.getStartState();
-			// List<S> totalpath = new ArrayList<S>();
-			// Counter<S> viterbibestProbTo = new Counter<S>();
+			////////////////////////////////////
+			
+			// S currentState=trellis.getStartState();
+			// List<S> totalpath=new ArrayList<S>();
+			// Counter<S> viterbibestProbTo=new Counter<S>();
 			// viterbibestProbTo.setCount(currentState,0.0);//here we set log probability of the starting state as 0.(log probs are additive.)
-			// HashMap<S,S> bestPreviousState = new HashMap<S,S>();
-			// Queue<S> FromnodesToDo = new LinkedList<S>();
+			// HashMap<S,S> bestPreviousState=new HashMap<S,S>();
+			// Queue<S> FromnodesToDo=new LinkedList<S>();
+			// while(!currentState.equals(trellis.getEndState()))
+			// {
+			// 	Counter<S> forward_transitions=trellis.getForwardTransitions(currentState);
+			// 	for(S nextState : forward_transitions.keySet())
+			// 	{
+
+			// 		Double probability = forward_transitions.getCount(nextState)+viterbibestProbTo.getCount(currentState);
+			// 		if(!viterbibestProbTo.containsKey(nextState))
+			// 		{
+			// 			FromnodesToDo.add(nextState);
+			// 			viterbibestProbTo.setCount(nextState,probability);
+			// 			bestPreviousState.put(nextState, currentState);
+			// 		}
+			// 		else if(viterbibestProbTo.getCount(nextState)<probability)
+			// 		{
+			// 			viterbibestProbTo.setCount(nextState,probability);
+			// 			bestPreviousState.put(nextState,currentState);
+			// 		}
+
+			// 	}
+			// 	currentState=FromnodesToDo.remove();
+			// }
+
+			// //now the currentstate is the end state of the trellis;
+			// S backed=null;
+			// //currentState.trellis.getEndState();
+			// totalpath.add(currentState);
+			// while(!currentState.equals(trellis.getStartState()))
+			// {
+			// 	backed=bestPreviousState.get(currentState);
+			// 	currentState=backed;
+			// 	totalpath.add(backed);
+			// }
+			// Collections.reverse(totalpath);
+			// return totalpath;
 
 			////////////////////////////////////
 
@@ -1015,8 +1070,8 @@ public class POSTaggerTester {
 		// LocalTrigramScorer localTrigramScorer = new MostFrequentTagScorer(false);
 		LocalTrigramScorer localTrigramScorer = new HMMTrigram();
 		// TODO : improve on the GreedyDecoder
-		// TrellisDecoder<State> trellisDecoder = new GreedyDecoder<State>();
-		TrellisDecoder<State> trellisDecoder = new ViterbiDecoder<State>();
+		TrellisDecoder<State> trellisDecoder = new GreedyDecoder<State>();
+		// TrellisDecoder<State> trellisDecoder = new ViterbiDecoder<State>();
 
 		// Train tagger
 		POSTagger posTagger = new POSTagger(localTrigramScorer, trellisDecoder);
