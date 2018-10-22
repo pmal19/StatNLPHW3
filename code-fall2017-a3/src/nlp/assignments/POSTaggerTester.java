@@ -335,7 +335,7 @@ public class POSTaggerTester {
 			
 			// Queue<Pair<S, Integer>> statesQueue = new LinkedList<Pair<S, Integer>>();
 			Queue<S> statesQueue = new LinkedList<S>();
-			Queue<Integer> levelQueue = new LinkedList<Integer>();
+			// Queue<Integer> levelQueue = new LinkedList<Integer>();
 			// statesQueue.add(new Pair<S, Integer>(currentState, index));
 			// Pair<S, Integer> nextStatePair = statesQueue.remove();
 			// currentState = nextStatePair.getKey();
@@ -343,12 +343,13 @@ public class POSTaggerTester {
 			while(!currentState.equals(endState)) {
 				Counter<S> nextStates = trellis.getForwardTransitions(currentState);
 				for(S nextState : nextStates.keySet()) {
-					double prob = nextStates.getCount(nextState) + viterbiPrev.getCount(currentState);
+					// double prob = nextStates.getCount(nextState) + viterbiPrev.getCount(currentState);
+					double prob = nextStates.getCount(nextState) + viterbiCurrent.getCount(currentState);
 					if (!viterbiCurrent.containsKey(nextState)) {
 						// Pair<S, Integer> queueStatePair = new Pair<S, Integer>(nextState, index + 1);
 						// statesQueue.add(queueStatePair);
 						statesQueue.add(nextState);
-						levelQueue.add(index + 1);
+						// levelQueue.add(index + 1);
 					}
 					if(prob > viterbiCurrent.getCount(nextState)) {
 						viterbiCurrent.setCount(nextState, prob);
@@ -358,16 +359,17 @@ public class POSTaggerTester {
 				// Pair<S, Integer> nextStatePair = statesQueue.remove();
 				// currentState = nextStatePair.getKey();
 				// double ind = nextStatePair.getValue();
-				S nextStatePair = statesQueue.remove();
+				// S nextStatePair = statesQueue.remove();
 				// currentState = nextStatePair.getKey();
-				double ind = levelQueue.remove();
-				if (ind > index) {
-					index += 1;
-					viterbiPrev = viterbiCurrent;
-					viterbiCurrent = new Counter<S>();
-					// viterbiCurrent = viterbiPrev;
-					// viterbiPrev = new Counter<S>();
-				}
+				currentState = statesQueue.remove();
+				// double ind = levelQueue.remove();
+				// if (ind > index) {
+				//	index += 1;
+				//	viterbiPrev = viterbiCurrent;
+				//	viterbiCurrent = new Counter<S>();
+				//	// viterbiCurrent = viterbiPrev;
+				//	// viterbiPrev = new Counter<S>();
+				// }
 			}
 
 			S lastState = null;
