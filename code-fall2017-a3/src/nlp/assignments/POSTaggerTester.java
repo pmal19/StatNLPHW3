@@ -333,7 +333,9 @@ public class POSTaggerTester {
 			HashMap<S, S> viterbiBestPrevStates = new HashMap<S, S>();
 			viterbiPrev.setCount(startState, 0);
 			
-			Queue<Pair<S, Integer>> statesQueue = new LinkedList<Pair<S, Integer>>();
+			// Queue<Pair<S, Integer>> statesQueue = new LinkedList<Pair<S, Integer>>();
+			Queue<S> statesQueue = new LinkedList<S>();
+			Queue<Integer> levelQueue = new LinkedList<Integer>();
 			// statesQueue.add(new Pair<S, Integer>(currentState, index));
 			// Pair<S, Integer> nextStatePair = statesQueue.remove();
 			// currentState = nextStatePair.getKey();
@@ -343,17 +345,22 @@ public class POSTaggerTester {
 				for(S nextState : nextStates.keySet()) {
 					double prob = nextStates.getCount(nextState) + viterbiPrev.getCount(currentState);
 					if (!viterbiCurrent.containsKey(nextState)) {
-						Pair<S, Integer> queueStatePair = new Pair<S, Integer>(nextState, index + 1);
-						statesQueue.add(queueStatePair);
+						// Pair<S, Integer> queueStatePair = new Pair<S, Integer>(nextState, index + 1);
+						// statesQueue.add(queueStatePair);
+						statesQueue.add(nextState);
+						levelQueue.add(index + 1);
 					}
 					if(prob > viterbiCurrent.getCount(nextState)) {
 						viterbiCurrent.setCount(nextState, prob);
 						viterbiBestPrevStates.put(nextState, currentState);
 					}
 				}
-				Pair<S, Integer> nextStatePair = statesQueue.remove();
-				currentState = nextStatePair.getKey();
-				double ind = nextStatePair.getValue();
+				// Pair<S, Integer> nextStatePair = statesQueue.remove();
+				// currentState = nextStatePair.getKey();
+				// double ind = nextStatePair.getValue();
+				S nextStatePair = statesQueue.remove();
+				// currentState = nextStatePair.getKey();
+				double ind = levelQueue.remove();
 				if (ind > index) {
 					index += 1;
 					viterbiPrev = viterbiCurrent;
