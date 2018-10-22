@@ -1,0 +1,17 @@
+Using base path: ../../data3
+Loading training sentences...../../data3/en-wsj-train.pos
+Read 39815 sentences.
+done.
+Loading in-domain dev sentences...../../data3/en-wsj-dev.pos
+Read 1700 sentences.
+done.
+Loading out-of-domain dev sentences...../../data3/en-web-weblogs-dev.pos
+Read 1016 sentences.
+done.
+Loading out-of-domain blind test sentences...../../data3/en-web-test.blind
+Read 1015 sentences.
+done.
+Evaluating on in-domain data:.
+Tag Accuracy: 0.9132316101115919 (Unknown Accuracy: 0.427394438722966)  Decoder Suboptimalities Detected: 0
+Evaluating on out-of-domain data:.
+Tag Accuracy: 0.8707027684818984 (Unknown Accuracy: 0.5331246739697444)  Decoder Suboptimalities Detected: 0
