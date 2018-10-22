@@ -381,7 +381,7 @@ public class POSTaggerTester {
 				path.add(lastState);
 			}
 			Collections.reverse(path);
-			System.out.println("Debug - path len - "path.size());
+			System.out.println("Debug - path len - "+path.size());
 
 			return path;
 			////////////////////////////////////
