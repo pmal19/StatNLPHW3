@@ -1070,8 +1070,8 @@ public class POSTaggerTester {
 		// LocalTrigramScorer localTrigramScorer = new MostFrequentTagScorer(false);
 		LocalTrigramScorer localTrigramScorer = new HMMTrigram();
 		// TODO : improve on the GreedyDecoder
-		TrellisDecoder<State> trellisDecoder = new GreedyDecoder<State>();
-		// TrellisDecoder<State> trellisDecoder = new ViterbiDecoder<State>();
+		// TrellisDecoder<State> trellisDecoder = new GreedyDecoder<State>();
+		TrellisDecoder<State> trellisDecoder = new ViterbiDecoder<State>();
 
 		// Train tagger
 		POSTagger posTagger = new POSTagger(localTrigramScorer, trellisDecoder);
