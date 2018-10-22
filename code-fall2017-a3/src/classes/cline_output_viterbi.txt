@@ -1,0 +1,22 @@
+Using base path: ../../data3
+Loading training sentences...../../data3/en-wsj-train.pos
+Read 39815 sentences.
+done.
+Loading in-domain dev sentences...../../data3/en-wsj-dev.pos
+Read 1700 sentences.
+done.
+Loading out-of-domain dev sentences...../../data3/en-web-weblogs-dev.pos
+Read 1016 sentences.
+done.
+Loading out-of-domain blind test sentences...../../data3/en-web-test.blind
+Read 1015 sentences.
+done.
+[LBFGSMinimizer.minimize] Iteration 0 ended with value 42.000000
+Evaluating on in-domain data:.
+Exception in thread "main" java.lang.OutOfMemoryError: GC overhead limit exceeded
+	at java.util.LinkedList.linkLast(LinkedList.java:142)
+	at java.util.LinkedList.add(LinkedList.java:338)
+	at nlp.assignments.POSTaggerTester$ViterbiDecoder.getBestPath(POSTaggerTester.java:350)
+	at nlp.assignments.POSTaggerTester$POSTagger.tag(POSTaggerTester.java:540)
+	at nlp.assignments.POSTaggerTester.evaluateTagger(POSTaggerTester.java:951)
+	at nlp.assignments.POSTaggerTester.main(POSTaggerTester.java:1093)
