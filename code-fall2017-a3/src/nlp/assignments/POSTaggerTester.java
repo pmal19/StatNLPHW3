@@ -381,77 +381,10 @@ public class POSTaggerTester {
 				path.add(lastState);
 			}
 			Collections.reverse(path);
-
+			System.out.println("Debug - path len - "path.size());
 
 			return path;
 			////////////////////////////////////
-
-
-			// HashMap<S,S> backtrace = new HashMap<S,S>();
-			// Counter<S> nextStates = new Counter<S>();
-			// Counter<S> currentStates = trellis.getForwardTransitions(startState);
-			// Counter<S> prevStates = new Counter<S>();
-			// Counter<S> backTransitions = new Counter<S>();
-			// viterbi.setCount(0, startState, 0.0);
-			// double transition, vProb;
-			////////////////////////////////////
-			
-			// S currentState=trellis.getStartState();
-			// List<S> totalpath=new ArrayList<S>();
-			// Counter<S> viterbibestProbTo=new Counter<S>();
-			// viterbibestProbTo.setCount(currentState,0.0);//here we set log probability of the starting state as 0.(log probs are additive.)
-			// HashMap<S,S> bestPreviousState=new HashMap<S,S>();
-			// Queue<S> FromnodesToDo=new LinkedList<S>();
-			// while(!currentState.equals(trellis.getEndState()))
-			// {
-			// 	Counter<S> forward_transitions=trellis.getForwardTransitions(currentState);
-			// 	for(S nextState : forward_transitions.keySet())
-			// 	{
-
-			// 		Double probability = forward_transitions.getCount(nextState)+viterbibestProbTo.getCount(currentState);
-			// 		if(!viterbibestProbTo.containsKey(nextState))
-			// 		{
-			// 			FromnodesToDo.add(nextState);
-			// 			viterbibestProbTo.setCount(nextState,probability);
-			// 			bestPreviousState.put(nextState, currentState);
-			// 		}
-			// 		else if(viterbibestProbTo.getCount(nextState)<probability)
-			// 		{
-			// 			viterbibestProbTo.setCount(nextState,probability);
-			// 			bestPreviousState.put(nextState,currentState);
-			// 		}
-
-			// 	}
-			// 	currentState=FromnodesToDo.remove();
-			// }
-
-			// //now the currentstate is the end state of the trellis;
-			// S backed=null;
-			// //currentState.trellis.getEndState();
-			// totalpath.add(currentState);
-			// while(!currentState.equals(trellis.getStartState()))
-			// {
-			// 	backed=bestPreviousState.get(currentState);
-			// 	currentState=backed;
-			// 	totalpath.add(backed);
-			// }
-			// Collections.reverse(totalpath);
-			// return totalpath;
-
-			////////////////////////////////////
-
-
-			// List<S> states = new ArrayList<S>();
-			// S currentState = trellis.getStartState();
-			// states.add(currentState);
-			// while (!currentState.equals(trellis.getEndState())) {
-			// 	Counter<S> transitions = trellis
-			// 			.getForwardTransitions(currentState);
-			// 	S nextState = transitions.argMax();
-			// 	states.add(nextState);
-			// 	currentState = nextState;
-			// }
-			// return states;
 		}
 	}
 
