@@ -32,6 +32,6 @@ done.
 [LBFGSMinimizer.minimize] Iteration 18 ended with value 58523.400038
 [LBFGSMinimizer.minimize] Iteration 19 ended with value 56933.937025
 Evaluating on in-domain data:.
-Tag Accuracy: 0.8283610415243301 (Unknown Accuracy: 0.8372811534500515)  Decoder Suboptimalities Detected: 0
+Tag Accuracy: 0.9493155191173865 (Unknown Accuracy: 0.5952626158599382)  Decoder Suboptimalities Detected: 0
 Evaluating on out-of-domain data:.
-Tag Accuracy: 0.7864313964101004 (Unknown Accuracy: 0.7355242566510172)  Decoder Suboptimalities Detected: 0
+Tag Accuracy: 0.9062106132382981 (Unknown Accuracy: 0.5252999478351591)  Decoder Suboptimalities Detected: 0

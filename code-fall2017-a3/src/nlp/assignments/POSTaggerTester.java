@@ -332,44 +332,47 @@ public class POSTaggerTester {
 			Counter<S> viterbiPrev = new Counter<S>();
 			HashMap<S, S> viterbiBestPrevStates = new HashMap<S, S>();
 			viterbiPrev.setCount(startState, 0);
+			viterbiCurrent.setCount(startState, 0);
 			
-			// Queue<Pair<S, Integer>> statesQueue = new LinkedList<Pair<S, Integer>>();
-			Queue<S> statesQueue = new LinkedList<S>();
+			Queue<Pair<S, Integer>> statesQueue = new LinkedList<Pair<S, Integer>>();
+			// Queue<S> statesQueue = new LinkedList<S>();
 			// Queue<Integer> levelQueue = new LinkedList<Integer>();
-			// statesQueue.add(new Pair<S, Integer>(currentState, index));
+			statesQueue.add(new Pair<S, Integer>(currentState, index));
 			// Pair<S, Integer> nextStatePair = statesQueue.remove();
 			// currentState = nextStatePair.getKey();
 
 			while(!currentState.equals(endState)) {
 				Counter<S> nextStates = trellis.getForwardTransitions(currentState);
 				for(S nextState : nextStates.keySet()) {
-					// double prob = nextStates.getCount(nextState) + viterbiPrev.getCount(currentState);
-					double prob = nextStates.getCount(nextState) + viterbiCurrent.getCount(currentState);
+					double prob = nextStates.getCount(nextState) + viterbiPrev.getCount(currentState);
+					// double prob = nextStates.getCount(nextState) + viterbiCurrent.getCount(currentState);
 					if (!viterbiCurrent.containsKey(nextState)) {
-						// Pair<S, Integer> queueStatePair = new Pair<S, Integer>(nextState, index + 1);
-						// statesQueue.add(queueStatePair);
-						statesQueue.add(nextState);
+						Pair<S, Integer> queueStatePair = new Pair<S, Integer>(nextState, index + 1);
+						statesQueue.add(queueStatePair);
+						// statesQueue.add(nextState);
 						// levelQueue.add(index + 1);
+						viterbiCurrent.setCount(nextState, prob);
+						viterbiBestPrevStates.put(nextState, currentState);
 					}
-					if(prob > viterbiCurrent.getCount(nextState)) {
+					if (prob > viterbiCurrent.getCount(nextState)) {
 						viterbiCurrent.setCount(nextState, prob);
 						viterbiBestPrevStates.put(nextState, currentState);
 					}
 				}
-				// Pair<S, Integer> nextStatePair = statesQueue.remove();
-				// currentState = nextStatePair.getKey();
-				// double ind = nextStatePair.getValue();
+				Pair<S, Integer> nextStatePair = statesQueue.remove();
+				currentState = nextStatePair.getKey();
+				int ind = nextStatePair.getValue();
 				// S nextStatePair = statesQueue.remove();
 				// currentState = nextStatePair.getKey();
-				currentState = statesQueue.remove();
+				// currentState = statesQueue.remove();
 				// double ind = levelQueue.remove();
-				// if (ind > index) {
-				//	index += 1;
-				//	viterbiPrev = viterbiCurrent;
-				//	viterbiCurrent = new Counter<S>();
-				//	// viterbiCurrent = viterbiPrev;
-				//	// viterbiPrev = new Counter<S>();
-				// }
+				if (ind > index) {
+					index += 1;
+					viterbiPrev = viterbiCurrent;
+					viterbiCurrent = new Counter<S>();
+					// viterbiCurrent = viterbiPrev;
+					// viterbiPrev = new Counter<S>();
+				}
 			}
 
 			S lastState = null;
@@ -381,10 +384,9 @@ public class POSTaggerTester {
 				path.add(lastState);
 			}
 			Collections.reverse(path);
-			System.out.println("Debug - path len - "+path.size());
+			// System.out.println("Debug - path len - "+path.size());
 
 			return path;
-			////////////////////////////////////
 		}
 	}
 
@@ -626,8 +628,9 @@ public class POSTaggerTester {
 			// 	LabeledInstance<String, String> data = new LabeledInstance<String, String>(tag, word);
 			// 	wordsClassifier.add(data);
 			// }
-			ProbabilisticClassifierFactory<String, String> factory = new MaximumEntropyClassifier.Factory<String, String, String>(
-					1, 180, new ProperNameTester.ProperNameFeatureExtractor());
+			// ProbabilisticClassifierFactory<String, String> factory = new MaximumEntropyClassifier.Factory<String, String, String>(
+			// 		1, 180, new UNKFeatureExtractor());
+			ProbabilisticClassifierFactory<String, String> factory = new MaximumEntropyClassifier.Factory<String, String, String>(1.0, 20, new ProperNameTester.ProperNameFeatureExtractor());
 			classifier = factory.trainClassifier(unkWordsClassifierData);
 		}
 
@@ -642,9 +645,11 @@ public class POSTaggerTester {
 				seenWord.add(word);
 				if (!wordsToTags.keySet().contains(word)) {
 					unknownWordTags.incrementCount(tag, 1.0);
-					LabeledInstance<String, String> data = new LabeledInstance<String, String>(tag, word);
-					unkWordsClassifierData.add(data);
+					// LabeledInstance<String, String> data = new LabeledInstance<String, String>(tag, word);
+					// unkWordsClassifierData.add(data);
 				}
+				LabeledInstance<String, String> data = new LabeledInstance<String, String>(tag, word);
+				unkWordsClassifierData.add(data);
 				wordsToTags.incrementCount(word, tag, 1.0);
 				tagsToWords.incrementCount(tag, word, 1.0);
 
@@ -669,13 +674,13 @@ public class POSTaggerTester {
 
 		private double tagProbability(String word, String tag, Counter<String> tagCounter) {
 			double wordProb = 0;
-			// if (tagCounter.keySet().contains(word)) {
-			// 	wordProb = tagCounter.getCount(tag);
-			// } else {
-			// 	Counter<String> wordProbabilities = classifier.getProbabilities(word);
-			// 	wordProb = wordProbabilities.getCount(tag);
-			// }
-			wordProb = tagCounter.getCount(tag);
+			if (tagCounter.keySet().contains(tag)) {
+				wordProb = tagCounter.getCount(tag);
+			} else {
+				Counter<String> wordProbabilities = classifier.getProbabilities(word);
+				wordProb = wordProbabilities.getCount(tag);
+			}
+			// wordProb = tagCounter.getCount(tag);
 			return wordProb;
 		}
 

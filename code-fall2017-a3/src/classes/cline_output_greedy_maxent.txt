@@ -1,0 +1,91 @@
+Using base path: ../../data3
+Loading training sentences...../../data3/en-wsj-train.pos
+Read 39815 sentences.
+done.
+Loading in-domain dev sentences...../../data3/en-wsj-dev.pos
+Read 1700 sentences.
+done.
+Loading out-of-domain dev sentences...../../data3/en-web-weblogs-dev.pos
+Read 1016 sentences.
+done.
+Loading out-of-domain blind test sentences...../../data3/en-web-test.blind
+Read 1015 sentences.
+done.
+[LBFGSMinimizer.minimize] Iteration 0 ended with value 131340.644944
+[LBFGSMinimizer.minimize] Iteration 1 ended with value 108902.597681
+[LBFGSMinimizer.minimize] Iteration 2 ended with value 91479.229537
+[LBFGSMinimizer.minimize] Iteration 3 ended with value 83968.657622
+[LBFGSMinimizer.minimize] Iteration 4 ended with value 81310.884521
+[LBFGSMinimizer.minimize] Iteration 5 ended with value 78623.750042
+[LBFGSMinimizer.minimize] Iteration 6 ended with value 77718.657188
+[LBFGSMinimizer.minimize] Iteration 7 ended with value 76650.500236
+[LBFGSMinimizer.minimize] Iteration 8 ended with value 74451.606298
+[LBFGSMinimizer.minimize] Iteration 9 ended with value 70401.978747
+[LBFGSMinimizer.minimize] Iteration 10 ended with value 65948.600463
+[LBFGSMinimizer.minimize] Iteration 11 ended with value 63201.860184
+[LBFGSMinimizer.minimize] Iteration 12 ended with value 62534.324637
+[LBFGSMinimizer.minimize] Iteration 13 ended with value 62412.104539
+[LBFGSMinimizer.minimize] Iteration 14 ended with value 61462.611874
+[LBFGSMinimizer.minimize] Iteration 15 ended with value 59464.156594
+[LBFGSMinimizer.minimize] Iteration 16 ended with value 57145.371158
+[LBFGSMinimizer.minimize] Iteration 17 ended with value 52369.562100
+[LBFGSMinimizer.minimize] Iteration 18 ended with value 48432.993386
+[LBFGSMinimizer.minimize] Iteration 19 ended with value 45550.162974
+[LBFGSMinimizer.minimize] Iteration 20 ended with value 44636.599742
+[LBFGSMinimizer.minimize] Iteration 21 ended with value 42989.197430
+[LBFGSMinimizer.minimize] Iteration 22 ended with value 40887.886690
+[LBFGSMinimizer.minimize] Iteration 23 ended with value 38877.529529
+[LBFGSMinimizer.minimize] Iteration 24 ended with value 38216.340912
+[LBFGSMinimizer.minimize] Iteration 25 ended with value 36732.183812
+[LBFGSMinimizer.minimize] Iteration 26 ended with value 35717.922772
+[LBFGSMinimizer.minimize] Iteration 27 ended with value 34840.067249
+[LBFGSMinimizer.minimize] Iteration 28 ended with value 33558.206137
+[LBFGSMinimizer.minimize] Iteration 29 ended with value 32681.305939
+[LBFGSMinimizer.minimize] Iteration 30 ended with value 32014.727993
+[LBFGSMinimizer.minimize] Iteration 31 ended with value 31252.898420
+[LBFGSMinimizer.minimize] Iteration 32 ended with value 30047.872210
+[LBFGSMinimizer.minimize] Iteration 33 ended with value 29331.601890
+[LBFGSMinimizer.minimize] Iteration 34 ended with value 29019.047163
+[LBFGSMinimizer.minimize] Iteration 35 ended with value 28687.999239
+[LBFGSMinimizer.minimize] Iteration 36 ended with value 27788.078454
+[LBFGSMinimizer.minimize] Iteration 37 ended with value 27226.569915
+[LBFGSMinimizer.minimize] Iteration 38 ended with value 26883.581957
+[LBFGSMinimizer.minimize] Iteration 39 ended with value 26659.678823
+[LBFGSMinimizer.minimize] Iteration 40 ended with value 26345.507701
+[LBFGSMinimizer.minimize] Iteration 41 ended with value 26175.068322
+[LBFGSMinimizer.minimize] Iteration 42 ended with value 25996.114273
+[LBFGSMinimizer.minimize] Iteration 43 ended with value 25714.180064
+[LBFGSMinimizer.minimize] Iteration 44 ended with value 25540.749111
+[LBFGSMinimizer.minimize] Iteration 45 ended with value 25421.647573
+[LBFGSMinimizer.minimize] Iteration 46 ended with value 25276.729965
+[LBFGSMinimizer.minimize] Iteration 47 ended with value 25190.220009
+[LBFGSMinimizer.minimize] Iteration 48 ended with value 25083.755894
+[LBFGSMinimizer.minimize] Iteration 49 ended with value 25032.314029
+[LBFGSMinimizer.minimize] Iteration 50 ended with value 24948.097234
+[LBFGSMinimizer.minimize] Iteration 51 ended with value 24894.516378
+[LBFGSMinimizer.minimize] Iteration 52 ended with value 24885.140394
+[LBFGSMinimizer.minimize] Iteration 53 ended with value 24797.646837
+[LBFGSMinimizer.minimize] Iteration 54 ended with value 24778.991000
+[LBFGSMinimizer.minimize] Iteration 55 ended with value 24754.198989
+[LBFGSMinimizer.minimize] Iteration 56 ended with value 24721.651957
+[LBFGSMinimizer.minimize] Iteration 57 ended with value 24701.131120
+[LBFGSMinimizer.minimize] Iteration 58 ended with value 24681.627095
+[LBFGSMinimizer.minimize] Iteration 59 ended with value 24656.657931
+[LBFGSMinimizer.minimize] Iteration 60 ended with value 24643.049653
+[LBFGSMinimizer.minimize] Iteration 61 ended with value 24633.829837
+[LBFGSMinimizer.minimize] Iteration 62 ended with value 24624.597058
+[LBFGSMinimizer.minimize] Iteration 63 ended with value 24612.388691
+[LBFGSMinimizer.minimize] Iteration 64 ended with value 24609.166358
+[LBFGSMinimizer.minimize] Iteration 65 ended with value 24602.955596
+[LBFGSMinimizer.minimize] Iteration 66 ended with value 24600.177684
+[LBFGSMinimizer.minimize] Iteration 67 ended with value 24592.976690
+[LBFGSMinimizer.minimize] Iteration 68 ended with value 24587.374805
+[LBFGSMinimizer.minimize] Iteration 69 ended with value 24581.097718
+[LBFGSMinimizer.minimize] Iteration 70 ended with value 24576.192071
+[LBFGSMinimizer.minimize] Iteration 71 ended with value 24571.261362
+[LBFGSMinimizer.minimize] Iteration 72 ended with value 24568.759661
+[LBFGSMinimizer.minimize] Iteration 73 ended with value 24566.979982
+Evaluating on in-domain data:.
+Tag Accuracy: 0.8855234191148561 (Unknown Accuracy: 0.8063851699279093)  Decoder Suboptimalities Detected: 444
+Evaluating on out-of-domain data:.
+Tag Accuracy: 0.8357599200312921 (Unknown Accuracy: 0.6640584246218049)  Decoder Suboptimalities Detected: 183
